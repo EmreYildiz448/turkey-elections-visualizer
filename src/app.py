@@ -1025,7 +1025,8 @@ class YerelSecimApp:
                 total_value2 = self.data_storage[2]['total_value']
     
                 percentage_diff_data = {
-                    key: ((data1.get(key, 0) / total_value1) * 100) - ((data2.get(key, 0) / total_value2) * 100)
+                    key: ((data2.get(key, 0) / total_value2) * 100)
+                        - ((data1.get(key, 0) / total_value1) * 100)
                     for key in set(data1) | set(data2)
                 }
                 self.display_data_in_text_area(percentage_diff_data, index - 1, is_percentage=True)
@@ -1101,10 +1102,10 @@ class YerelSecimApp:
         if self.calculate_difference_var.get():
             if len(self.data_storage) >= 2:
                 dict_diff, total_diff = self.calculate_difference(
-                    self.data_storage[1]['data'], 
-                    self.data_storage[2]['data'], 
-                    self.data_storage[1]['total_value'], 
-                    self.data_storage[2]['total_value']
+                    self.data_storage[2]['data'],
+                    self.data_storage[1]['data'],
+                    self.data_storage[2]['total_value'],
+                    self.data_storage[1]['total_value'],
                 )
                 self.data_storage[3] = {
                     'data': dict_diff, 
@@ -1625,10 +1626,10 @@ class YerelSecimApp:
             # If we have both datasets, calculate and display the difference
             if len(self.data_storage) >= 2 and self.data_screen_count == 3:
                 dict_diff, total_diff = self.calculate_difference(
-                    self.data_storage[1]['data'], 
                     self.data_storage[2]['data'], 
-                    self.data_storage[1]['total_value'], 
-                    self.data_storage[2]['total_value']
+                    self.data_storage[1]['data'], 
+                    self.data_storage[2]['total_value'], 
+                    self.data_storage[1]['total_value']
                 )
                 # Update data_storage with the new difference data
                 self.data_storage[3] = {
