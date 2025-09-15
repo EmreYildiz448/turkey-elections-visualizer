@@ -89,7 +89,7 @@ pip install -r requirements.txt
 
 ### Run the visualizer:
 ```bash
-python -m src.main
+python src/main.py
 ```
 ---
 
